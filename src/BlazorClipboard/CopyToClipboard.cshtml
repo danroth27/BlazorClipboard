@@ -1,0 +1,19 @@
+﻿@using BlazorClipboard
+<div class="input-group">
+    <input type="text" class="form-control" value="@Text" disabled>
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" onclick="@OnClick">&#128203;</button>
+    </div>
+</div>
+
+@functions {
+    [Parameter] string Text { get; set; }
+
+    public async Task OnClick()
+    {
+        Console.WriteLine("OnClick()");
+        Console.WriteLine($"Text={Text}");
+        var result = await Clipboard.WriteText(Text);
+        Console.WriteLine(result.ToString());
+    }
+}
